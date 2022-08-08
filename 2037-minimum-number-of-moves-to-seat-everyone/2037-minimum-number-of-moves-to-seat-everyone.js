@@ -12,3 +12,11 @@ var minMovesToSeat = function(seats, students) {
         sum+=Math.abs(seats[i]-students[i])
     return sum
 };
+
+// 2nd solution using reduce(accumulator, currentval, index)
+
+var minMovesToSeat = function(seats, students) {
+    seats.sort((a, b) => { return a - b})
+    students.sort((a, b) => { return a - b})
+    return seats.reduce((a, b, i) => a += Math.abs(seats[i] - students[i]), 0)
+};
