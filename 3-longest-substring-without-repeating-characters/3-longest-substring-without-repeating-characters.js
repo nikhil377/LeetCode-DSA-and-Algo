@@ -1,34 +1,47 @@
-/**
- * @param {string} s
- * @return {number}
- */
+// single pointer move to right parse the string
+//  if charCountArray is not having that char increase max count to ++;
+// if char is there reset the object and add again max countt++
+// return max count
+//  317 / 987 test cases passed.
 
-
-var lengthOfLongestSubstring = function(s) {
-    let left = 0;
-    let right = 0;
-    let max = -Infinity;
-    let map = new Map();
+// var lengthOfLongestSubstring = function(s) {
+ 
+//   let charCountObject={}, maxCount=0, maxCountArr=[]
     
-    while(right < s.length){
+//     for(let i=0;i<s.length;i++){
         
-        if(map.get(s[right]))
-            map.set(s[right], map.get(s[right])+1)
-        else
-            map.set(s[right], 1)
+//         let char= s[i];
         
-        
-        while(map.get(s[right]) > 1){
-            if(map.get(s[left])===1){
-                map.delete(s[left]);
-            }else{
-                map.set(s[left], map.get(s[left])-1);
-            }
+//         if(charCountObject[char]){
             
+//             maxCountArr.push(maxCount);
+            
+//             charCountObject={};
+//             charCountObject[char]=1;
+//             maxCount=1;
+            
+//         }else{
+//             charCountObject[char]=1;
+//             maxCount++;
+            
+//         }
+//     }
+//     return Math.max(...maxCountArr, maxCount)
+// };
+
+ var lengthOfLongestSubstring = function(s) {
+    let set = new Set();
+    let left=0,right=0;
+    let longest=0;
+    while(right < s.length){
+        if(!set.has(s.charAt(right))){
+            set.add(s.charAt(right))
+            longest = Math.max(set.size,longest)
+            right++;
+        }else{
+            set.delete(s.charAt(left));
             left++;
         }
-        max = Math.max(max, right-left+1);
-        right++;
     }
-    return max === -Infinity ? 0 : max; 
+    return longest;
 };
