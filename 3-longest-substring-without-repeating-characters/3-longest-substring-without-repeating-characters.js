@@ -29,19 +29,44 @@
 //     return Math.max(...maxCountArr, maxCount)
 // };
 
+//  Take left and right pointers
+// 
+
+
+
  var lengthOfLongestSubstring = function(s) {
-    let set = new Set();
-    let left=0,right=0;
-    let longest=0;
-    while(right < s.length){
-        if(!set.has(s.charAt(right))){
-            set.add(s.charAt(right))
-            longest = Math.max(set.size,longest)
-            right++;
-        }else{
-            set.delete(s.charAt(left));
-            left++;
-        }
-    }
-    return longest;
+     
+    let left=0, right=0, longest=0;
+     let countChar={};
+     let seen = new Set();
+     
+     while(right<s.length){
+         
+         let char= s[right];
+         
+         if(!seen.has(char)){
+             seen.add(char);
+             longest= Math.max(longest,seen.size)
+             right++;
+         }else{
+              seen.delete(s.charAt(left));
+             left++;
+         }
+     }
+     return longest
 };
+
+// function lengthOfLongestSubstring(s) {
+//   let seen = new Set();
+//   let longest = 0;
+//   let l = 0;
+//   for (let r = 0; r < s.length; r++) {
+//     while (seen.has(s[r])) {
+//       seen.delete(s[l]);
+//       l++;
+//     }
+//     seen.add(s[r]);
+//     longest = Math.max(longest, r - l + 1);
+//   }
+//   return longest;
+// };
