@@ -1,65 +1,33 @@
-// 1st solution
-
-// SC:O(n)+O(n)= O(n)
-// TC: O(n)
-
-// var mergeTwoLists = function(l1, l2) {
-//     let tempNode = new ListNode(0, null);
-//     let tempNodeCopy= tempNode;
-   
-    
-//     while(l1 && l2){
-        
-//      if(l1.val>l2.val){
-//          tempNodeCopy.next=l2;
-//          l2= l2.next;
-      
-//      }else {
-//          tempNodeCopy.next=l1;
-//          l1= l1.next;
-//      } 
-//            tempNodeCopy=tempNodeCopy.next;
-        
-//     }
-//     tempNodeCopy.next= l1 ||l2;
-//     return tempNode.next;
-// };
-
-
-// SC:O(n+m)
-// TC: O(n)
-
-// 2nd solution recursive
-// var mergeTwoLists = function(l1, l2) {
-//     if(!l1 || !l2){
-//         return l1? l1: l2;
-//     }
-//     if(l1.val<l2.val){
-//      l1.next = mergeTwoLists(l1.next, l2);   
-//         return l1;
-//     }else{
-//          l2.next = mergeTwoLists(l1, l2.next);   
-//         return l2;
-//     }
-
-    
-// };
-
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
 var mergeTwoLists = function(l1, l2) {
-    let tempNode = new ListNode(0, null);
-    let currentNode = tempNode;
+  
+    let newMergedList = new ListNode(0,null);
+    
+    let newList= newMergedList;
     
     while(l1 && l2){
-        if(l1.val<l2.val){
-            currentNode.next=l1;
+        if(l1.val< l2.val){
+            newList.next=l1;
             l1=l1.next;
         }else{
-            currentNode.next = l2;
+             newList.next=l2;
             l2=l2.next;
         }
-        currentNode= currentNode.next;
+        
+         newList= newList.next;
+           
     }
-   currentNode.next=  l1 || l2;
-   
-    return tempNode.next;
+    newList.next= (l1 || l2);
+    return newMergedList.next
 };
