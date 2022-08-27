@@ -6,16 +6,17 @@
  * }
  */
 
+// Algo:::
 
-    var reorderList = function(head) {
-    // find middle node
-    // split list into 2 first half and 2nd half
-    // reverse 2nd half
-    // attach first list with next linklist
+ // find middle node
+// split list into 2 first half and 2nd half
+// reverse 2nd half
+// attach first list with next linklist
     
-        
-   if (!head || !head.next) return; 
-//    step-1 Finding middle
+var reorderList = function(head) {
+  if (!head || !head.next) return; 
+    
+   //  step-1 Finding middle
     
     let fastPointer= head.next;
     let slowPointer =head;
@@ -26,24 +27,22 @@
         slowPointer=slowPointer.next;
         fastPointer=fastPointer.next.next;
     }
-//     2nd half added to second list
+//   2nd half added to second list
     let part2= slowPointer.next;
         
 //    pointing 1st half's end list to null
-//         for e.g- in 1st example 2 will be detached from 3
+//    for e.g- in 1st example 2 will be detached from 3
     slowPointer.next=null;
-        
-        
-        
-    // let firstHalfCopy=  head;
+   
      let secondHalfCopy = part2 ;
      
-        
+//     reverse the 2nd list
         reverse(secondHalfCopy);
-    
 
         function reverse(secondHalfCopy){
-            let curr=secondHalfCopy, prev=null; let next= secondHalfCopy.next;
+            let curr=secondHalfCopy, prev=null; 
+            let next= secondHalfCopy.next;
+           
             while(curr){
             next=curr.next;
             curr.next=prev;
@@ -55,7 +54,7 @@
             
         }
         
-//         merge
+    //   merge first and second half
         
         while(head && part2){
             let temp1= head.next;
