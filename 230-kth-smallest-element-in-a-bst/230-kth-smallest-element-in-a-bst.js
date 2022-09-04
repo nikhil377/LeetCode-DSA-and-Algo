@@ -11,6 +11,10 @@
  * @param {number} k
  * @return {number}
  */
+
+// traverse left root right // inorder traverse
+// left root right everthing will be sorted for BST tree
+// just take 1 index and ++ it 
 var kthSmallest = function(root, k) {
     if(!root) return [];
     let node=root;
