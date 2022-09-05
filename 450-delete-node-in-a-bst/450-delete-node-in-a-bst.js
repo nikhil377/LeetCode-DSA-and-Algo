@@ -64,8 +64,8 @@ var deleteNode = function(root, key) {
         
         // if left/right is null, then we can safely pick the one that is not null without 
         // breaking the BST
-        if (null === root.left) { return root.right; }
-        if (null === root.right) { return root.left; }
+       else if (null === root.left) { return root.right; }
+       else if (null === root.right) { return root.left; }
     }
     
     if (key < root.val) {
